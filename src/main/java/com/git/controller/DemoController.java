@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @ResponseBody
-public abstract class DemoController {
+public class DemoController {
     @Autowired
     private DemoService demoService;
 
