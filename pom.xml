@@ -186,7 +186,12 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-
+        <!--分页插件-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.0.0</version>
+        </dependency>
     </dependencies>
 
 
