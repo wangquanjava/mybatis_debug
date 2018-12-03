@@ -40,4 +40,12 @@ public class DemoController {
     }
 
 
+    @RequestMapping("async")
+    public BaseResponse async() {
+        System.out.println(0);
+        demoService.async(demoService);
+        System.out.println(4);
+        return BaseDataResponse.SUCCESSFUL();
+    }
+
 }
