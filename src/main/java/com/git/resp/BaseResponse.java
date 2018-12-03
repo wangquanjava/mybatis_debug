@@ -1,12 +1,8 @@
 package com.git.resp;
 
-import java.io.Serializable;
-
-import org.springframework.context.i18n.LocaleContextHolder;
-
-import com.git.utils.MessageUtil;
-
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 不带数据的返回类
@@ -23,7 +19,6 @@ public class BaseResponse implements Serializable{
 	public BaseResponse(String code) {
 		super();
 		this.code = code;
-        this.message = MessageUtil.getMessage(code, null, LocaleContextHolder.getLocale());
 	}
 //	2.
 	public BaseResponse(String code, String message) {

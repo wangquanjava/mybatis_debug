@@ -196,6 +196,28 @@
 
 
     <build>
+        <finalName>ROOT</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/profiles/${deploy.type}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources/</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <!--mybatis生成器-->
             <plugin>
@@ -238,60 +260,24 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <!-- 文件过滤 -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <!-- 加载所有文件 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <!-- 指明需要替换的文件 -->
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>jdbc.properties</include>
-                </includes>
-                <!--填充${}字符-->
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
 
     <!--第三部分：配置根据maven命令激活的加载-->
     <profiles>
         <profile>
-            <id>dev</id>
-            <!-- 默认激活开发配制 -->
+            <id>test</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <build>
-                <filters>
-                    <filter>src/main/resources/jdbc_development.properties</filter>
-                </filters>
-            </build>
+            <properties>
+                <deploy.type>test</deploy.type>
+            </properties>
         </profile>
         <profile>
-            <id>pro</id>
-            <build>
-                <filters>
-                    <filter>src/main/resources/jdbc_product.properties</filter>
-                </filters>
-            </build>
+            <id>prod</id>
+            <properties>
+                <deploy.type>prod</deploy.type>
+            </properties>
         </profile>
     </profiles>
-
-
 </project>
